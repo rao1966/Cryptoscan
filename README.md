@@ -75,7 +75,7 @@ This scanner identifies supported X.509 certificates and public/private key form
 - Key size
 - Certificate signature algorithm
 - Certificate expiration status
-- Simplified quantum-vulnerability classification
+- Simplified classification of algorithms considered vulnerable to sufficiently capable quantum computers
 
 ### L2 – Cryptographic Configuration Discovery
 
@@ -126,6 +126,8 @@ Controlled tests were conducted using a self-signed RSA-2048 certificate and a s
 | TLSv1 | Deprecated protocol | HIGH |
 | RC4 | Weak/deprecated algorithm | HIGH |
 | prime256v1 | Elliptic-curve mechanism | QUANTUM |
+
+The QUANTUM label is a prototype classification indicating an algorithm family considered vulnerable to sufficiently capable quantum computers; it is not a standardized severity rating.
 
 **L2 test summary:** One configuration file examined and three findings detected.
 
