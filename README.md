@@ -169,13 +169,21 @@ Planned research and development activities include:
 
 ## 10. Citation
 
+**Research preprint**
+
 Angajala, S. R. (2026). *CryptoScan: A Source-Code-Independent Framework for Legacy Cryptographic Discovery*. Zenodo.
 
 https://doi.org/10.5281/zenodo.23955931
 
+**Software release**
+
+Angajala, S. R. (2026). *CryptoScan v1.0.0: Initial Research Prototype* [Computer software]. Zenodo.
+
+https://doi.org/10.5281/zenodo.23964124
+
 ## 11. Licence
 
-This software is released under the MIT License. See [LICENSE](LICENSE).
+This software is released under the MIT License. See [LICENSE](https://github.com/rao1966/Cryptoscan/blob/main/LICENSE).
 
 ## 12. Author
 
