@@ -1,0 +1,18 @@
+
+cff-version: 1.2.0
+message: "If you use CryptoScan in your research, please cite this software."
+title: "CryptoScan: Cryptographic Inventory for the Quantum Era"
+type: software
+authors:
+  - family-names: Angajala
+    given-names: "Srinivasa Rao"
+    name-suffix: "Ph.D."
+version: 1.0.0
+date-released: 2026-11-06
+repository-code: "https://github.com/rao1966/Cryptoscan"
+license: MIT
+doi: "10.5281/zenodo.23964124"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.23955931"
+    description: "Related main research preprint"
