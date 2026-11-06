@@ -84,33 +84,33 @@ Execute the following commands from the project root.
 ### L1 – Certificate and key discovery
 
 ```bash
-python src/scan_1.py samples -o findings.json
+python src/scan_1.py samples -o results/findings_l1.json
 ```
 
-### L2 – Configuration discovery
+### L2 – Configuration analysis
 
 ```bash
-python src/scan_2.py configs -o findings_l2.json
+python src/scan_2.py samples -o results/findings_l2.json
 ```
 
-### L3 – Job and script discovery
+### L3 – Job scripts and command analysis
 
 ```bash
-python src/scan_3.py l3_test -o findings_l3.json
+python src/scan_3.py l3_test -o results/findings_l3.json
 ```
 
 ### L4 – Binary signature discovery
 
 ```bash
-python src/scan_4.py l4_test -o findings_l4.json
+python src/scan_4.py l4_test -o results/findings_l4.json
 ```
 
 Binary signature matches indicate possible cryptographic components, not confirmed runtime use.
 
-### L5 – Passive TLS metadata discovery
+### L5 – Passive TLS metadata analysis
 
 ```bash
-python src/scan_5.py l5_test.pcap -o findings_l5_test.json
+python src/scan_5.py l5_test/l5_test.pcap -o results/findings_l5.json
 ```
 
 Optional system mapping:
@@ -121,10 +121,10 @@ python src/scan_5.py --help
 
 The scanner analyzes supplied packet captures offline. Client-offered cipher suites must not be interpreted as negotiated algorithms.
 
-### L6 – Human knowledge ingestion
+### L6 – Questionnaire and interview ingestion
 
 ```bash
-python src/scan_6.py l6_test.csv -o findings_l6_test.json --context-out context_l6_test.json
+python src/scan_6.py l6_test/l6_test.csv -o results/findings_l6.json --context-out results/context_l6_test.json
 ```
 
 L6 findings represent human-reported information and require corroboration where possible.
@@ -134,7 +134,7 @@ L6 findings represent human-reported information and require corroboration where
 After generating the six findings files, run:
 
 ```bash
-python reconcile_v2.py --l1 findings.json --l2 findings_l2.json --l3 findings_l3.json --l4 findings_l4.json --l5 findings_l5_test.json --l6 findings_l6_test.json --context context_l6_test.json -o inventory_evidence_audit.json --report report_evidence_audit.md
+python reconcile_v2.py --l1 results/findings_l1.json --l2 results/findings_l2.json --l3 results/findings_l3.json --l4 results/findings_l4.json --l5 results/findings_l5.json --l6 results/findings_l6.json --context results/context_l6_test.json -o results/inventory.json --report results/report.md
 ```
 
 The reconciler produces:
