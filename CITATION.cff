@@ -6,8 +6,7 @@ type: software
 authors:
   - family-names: Angajala
     given-names: "Srinivasa Rao"
-    name-suffix: "Ph.D."
-version: 1.0.0
+version: "1.0.0"
 date-released: 2026-11-06
 repository-code: "https://github.com/rao1966/Cryptoscan"
 license: MIT
