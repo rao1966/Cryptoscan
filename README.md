@@ -193,6 +193,14 @@ CryptoScan is a research prototype demonstrating a source-code-independent, six-
 
 Its current evidence consists of controlled synthetic test cases. Further implementation, benchmarking, and independent validation are required before production deployment.
 
-## 12. License
+## 12. Related Research
 
-Add a separate LICENSE file before public release. Do not assume a license solely from this README.
+CryptoScan is associated with the research preprint:
+"CryptoScan: A Source-Code-Independent Framework for Legacy Cryptographic Discovery."
+The companion research manuscript will separately examine evidence provenance,
+cross-layer reconciliation, and uncertainty-aware risk assessment.
+
+## 13. License
+
+This project is distributed under the MIT License.
+See the [LICENSE](LICENSE) file for details.
