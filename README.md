@@ -40,9 +40,6 @@ python -m pip install -r requirements.txt
 CryptoScan/
 │
 ├── src/
-CryptoScan/
-│
-├── src/
 │   ├── requirements.txt
 │   ├── scan_1.py
 │   ├── scan_2.py
