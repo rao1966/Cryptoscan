@@ -40,6 +40,9 @@ python -m pip install -r requirements.txt
 CryptoScan/
 │
 ├── src/
+CryptoScan/
+│
+├── src/
 │   ├── requirements.txt
 │   ├── scan_1.py
 │   ├── scan_2.py
@@ -49,22 +52,30 @@ CryptoScan/
 │   └── scan_6.py
 │
 ├── samples/
-├── results/
+│   ├── test_certificate.pem
+│   └── nginx_test.conf
 │
+├── l3_test/
+│   ├── test_crypto.cbl
+│   ├── test_crypto.jcl
+│   └── test_crypto.sh
+│
+├── l4_test/
+│   └── test_crypto.bin
+│
+├── l5_test/
+│   └── l5_test.pcap
+│
+├── l6_test/
+│   ├── l6_test.csv
+│   └── context_l6_test.json
+│
+├── results/
 ├── reconcile_v2.py
 ├── requirements.txt
 ├── README.md
 ├── LICENSE
-├── .gitignore
-│
-├── test_certificate.pem
-├── nginx_test.conf
-├── test_crypto.cbl
-├── test_crypto.jcl
-├── test_crypto.sh
-├── l5_test.pcap
-├── l6_test.csv
-└── context_l6_test.json
+└── .gitignore
 ```
 ## 5. Running the Six Scanners
 
