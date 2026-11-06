@@ -1,0 +1,4 @@
+system,owner,asset,algorithm_family,key_size,purpose,data_lifetime_years,exposure,who_knows,notes
+web1,Payments team,Customer portal TLS,RSA,2048,transit,10,internet,Senior system administrator,Certificate renewed yearly
+web1,Payments team,Legacy signing service,DSA,2048,signing,10,internet,Security team,Legacy signing algorithm
+web2,IT team,Internal data encryption,AES,256,storage,3,internal,Database administrator,Encryption at rest

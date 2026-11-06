@@ -1,57 +1,33 @@
-# CryptoScan
-## A Source-Code-Independent Framework for Legacy Cryptographic Discovery
+# CryptoScan: Cryptographic Inventory for the Quantum Era
 
-**Author:** Dr. Srinivasa Rao Angajala  
-**Affiliation:** Independent Researcher, Guntur, Andhra Pradesh, India
-
-**Research preprint:** [https://doi.org/10.5281/zenodo.23955931](https://doi.org/10.5281/zenodo.23955931)
-
----
+**A source-code-independent framework for discovering and assessing cryptographic assets in legacy IT environments.**
 
 ## 1. Overview
 
-CryptoScan is a research-oriented prototype exploring source-code-independent discovery of cryptographic artifacts in legacy and heterogeneous computing environments.
+CryptoScan is a research prototype designed to discover, classify, and provisionally risk-rank cryptographic artifacts across legacy IT environments, including systems where source code or complete documentation may not be available.
 
-The project addresses an important challenge in the post-quantum era: organizations cannot effectively plan cryptographic migration without first identifying where cryptographic mechanisms are used.
+It uses a six-layer discovery architecture and consolidates findings into a unified cryptographic inventory.
 
-CryptoScan proposes a layered approach to identifying cryptographic assets through certificates, keys, configuration files, binary artifacts, runtime observations and evidence correlation.
+The prototype is intended for research demonstration and controlled evaluation. It has not been validated against production enterprise environments.
 
-## 2. Proposed Six-Layer Architecture
+## 2. Architecture
 
-| Layer | Description | Status |
+| Layer | Discovery method | Scanner |
 |---|---|---|
-| L1 | Certificate and Key Discovery | Implemented |
-| L2 | Cryptographic Configuration Discovery | Implemented |
-| L3 | Library, Dependency and Binary Discovery | Proposed |
-| L4 | Runtime Cryptographic Behaviour Discovery | Proposed |
-| L5 | Evidence Correlation and Cryptographic Inventory | Proposed |
-| L6 | Quantum Risk Assessment and PQC Migration Prioritization | Proposed |
+| L1 | Certificate and key discovery | `scan_1.py` |
+| L2 | Configuration-file analysis | `scan_2.py` |
+| L3 | Job scripts and command analysis | `scan_3.py` |
+| L4 | Binary signature discovery | `scan_4.py` |
+| L5 | Passive TLS/network metadata analysis | `scan_5.py` |
+| L6 | Human knowledge and questionnaire ingestion | `scan_6.py` |
 
-**Important:** Only L1 and L2 have preliminary Python implementations. L3–L6 are proposed future development layers.
+The reconciliation module is `reconcile_v2.py`.
 
-## 3. Repository Structure
+## 3. Requirements
 
-```text
-Cryptoscan/
-├── README.md
-├── LICENSE
-├── requirements.txt
-├── src/
-│   ├── scan_1.py
-│   └── scan_2.py
-├── samples/
-│   ├── test_certificate.pem
-│   └── nginx_test.conf
-└── results/
-    ├── findings.json
-    └── findings_l2.json
-```
-
-## 4. Requirements
-
-- Python 3.10 or later
-- Python cryptography library
-- Windows, Linux or macOS
+- Python 3.13.7 (tested environment).
+- Python standard library.
+- `cryptography` package, version 42 or later.
 
 Install dependencies:
 
@@ -59,134 +35,164 @@ Install dependencies:
 python -m pip install -r requirements.txt
 ```
 
-## 5. Running the Scanners
+## 4. Project Structure
 
-Run commands from the repository's main directory.
+```text
+CryptoScan/
+├── scan_1.py
+├── scan_2.py
+├── scan_3.py
+├── scan_4.py
+├── scan_5.py
+├── scan_6.py
+├── reconcile_v2.py
+├── requirements.txt
+├── README.md
+├── samples/
+├── configs/
+├── l3_test/
+├── l4_test/
+├── l5_test.pcap
+├── l6_test.csv
+├── findings.json
+├── findings_l2.json
+├── findings_l3.json
+├── findings_l4.json
+├── findings_l5_test.json
+├── findings_l6_test.json
+├── context_l6_test.json
+├── inventory_evidence_audit.json
+└── report_evidence_audit.md
+```
 
-### L1 – Certificate and Key Discovery
+## 5. Running the Six Scanners
+
+Execute the following commands from the project root.
+
+### L1 – Certificate and key discovery
 
 ```bash
-python src/scan_1.py samples -o results/findings.json
+python scan_1.py samples -o findings.json
 ```
 
-This scanner identifies supported X.509 certificates and public/private key formats, and reports:
-
-- Cryptographic algorithm
-- Key size
-- Certificate signature algorithm
-- Certificate expiration status
-- Simplified classification of algorithms considered vulnerable to sufficiently capable quantum computers
-
-### L2 – Cryptographic Configuration Discovery
+### L2 – Configuration discovery
 
 ```bash
-python src/scan_2.py samples -o results/findings_l2.json
+python scan_2.py configs -o findings_l2.json
 ```
 
-This scanner examines supported configuration files for selected cryptographic indicators, including:
+### L3 – Job and script discovery
 
-- Deprecated TLS/SSL protocols
-- Weak or deprecated cipher algorithms
-- RSA, DH and elliptic-curve mechanisms
-- Selected SSH cryptographic settings
-- Selected OpenSSL and Java security settings
-
-Both scanners operate offline and are designed for read-only inspection.
-
-### Windows Python Launcher
-
-If using Python 3.13 on Windows, the equivalent commands are:
-
-```cmd
-py -3.13 src/scan_1.py samples -o results/findings.json
+```bash
+python scan_3.py l3_test -o findings_l3.json
 ```
 
-```cmd
-py -3.13 src/scan_2.py samples -o results/findings_l2.json
+### L4 – Binary signature discovery
+
+```bash
+python scan_4.py l4_test -o findings_l4.json
 ```
 
-## 6. Preliminary Test Results
+Binary signature matches indicate possible cryptographic components, not confirmed runtime use.
 
-Controlled tests were conducted using a self-signed RSA-2048 certificate and a sample Nginx configuration file.
+### L5 – Passive TLS metadata discovery
 
-### L1 Test
+```bash
+python scan_5.py l5_test.pcap -o findings_l5_test.json
+```
 
-| Test item | Result |
-|---|---|
-| Certificate detected | Yes |
-| Algorithm | RSA |
-| Key size | 2048 bits |
-| Quantum-vulnerability flag | True |
-| JSON output | Generated |
+Optional system mapping:
 
-### L2 Test
+```bash
+python scan_5.py --help
+```
 
-| Configuration indicator | Detection | Severity |
-|---|---|---|
-| TLSv1 | Deprecated protocol | HIGH |
-| RC4 | Weak/deprecated algorithm | HIGH |
-| prime256v1 | Elliptic-curve mechanism | QUANTUM |
+The scanner analyzes supplied packet captures offline. Client-offered cipher suites must not be interpreted as negotiated algorithms.
 
-The QUANTUM label is a prototype classification indicating an algorithm family considered vulnerable to sufficiently capable quantum computers; it is not a standardized severity rating.
+### L6 – Human knowledge ingestion
 
-**L2 test summary:** One configuration file examined and three findings detected.
+```bash
+python scan_6.py l6_test.csv -o findings_l6_test.json --context-out context_l6_test.json
+```
 
-These results demonstrate preliminary detection capability on controlled test samples. They do not establish enterprise-scale accuracy or comprehensive cryptographic discovery.
+L6 findings represent human-reported information and require corroboration where possible.
 
-## 7. Output
+## 6. Reconciliation and Risk Assessment
 
-The scanners generate JSON reports:
+After generating the six findings files, run:
 
-- `results/findings.json`
-- `results/findings_l2.json`
+```bash
+python reconcile_v2.py --l1 findings.json --l2 findings_l2.json --l3 findings_l3.json --l4 findings_l4.json --l5 findings_l5_test.json --l6 findings_l6_test.json --context context_l6_test.json -o inventory_evidence_audit.json --report report_evidence_audit.md
+```
 
-The L1 report includes a prototype cryptographic inventory representation. It is not claimed to be compliant with the official CycloneDX CBOM specification.
+The reconciler produces:
 
-## 8. Research Limitations
+- Consolidated cryptographic inventory in JSON.
+- Provisional risk scores.
+- Evidence provenance and evidence-strength information.
+- Review flags for migration, classification, and missing context.
+- Human-readable Markdown report.
 
-- L1 and L2 are preliminary implementations.
-- L2 uses pattern-based configuration analysis.
-- Findings require manual contextual validation.
-- Effective runtime cryptographic settings are not verified.
-- A quantum-vulnerability flag does not indicate an actual quantum attack.
-- The risk classification is exploratory, not a validated probability model.
-- L3–L6 have not yet been implemented.
-- Production readiness and enterprise-scale performance have not been established.
+## 7. Risk Model
 
-The prototype is intended for research and educational evaluation.
+The prototype uses:
 
-**Security note:** Scan only files and systems you are authorized to inspect. Do not upload real private keys, passwords or confidential configuration files to this public repository.
+**Risk = Vulnerability × Lifetime × Exposure**
 
-## 9. Future Development
+Each factor uses an integer scale from 1 to 5.
 
-Planned research and development activities include:
+The resulting score ranges from 1 to 125.
 
-1. Library, dependency and binary discovery.
-2. Runtime cryptographic behaviour observation.
-3. Evidence correlation and normalized cryptographic inventory.
-4. Quantum risk assessment and migration prioritization.
-5. Broader reproducible testing and validation.
+When lifetime or exposure information is unavailable, the prototype uses a provisional default value of 3 and flags the missing context.
 
-## 10. Citation
+These defaults are assumptions, not empirically validated measurements.
 
-**Research preprint**
+Unclassified findings are not assigned a risk score. Unknown findings must not be interpreted as low risk.
 
-Angajala, S. R. (2026). *CryptoScan: A Source-Code-Independent Framework for Legacy Cryptographic Discovery*. Zenodo.
+Evidence-strength labels are qualitative provenance indicators, not calibrated confidence probabilities.
 
-https://doi.org/10.5281/zenodo.23955931
+## 8. Evidence and Interpretation
 
-**Software release**
+CryptoScan distinguishes evidence from confirmed cryptographic use.
 
-Angajala, S. R. (2026). *CryptoScan v1.0.0: Initial Research Prototype* [Computer software]. Zenodo.
+Examples:
 
-https://doi.org/10.5281/zenodo.23964124
+- Certificate discovery identifies certificate and key metadata.
+- Configuration matches identify directives and configured algorithm references.
+- Script matches identify cryptographic commands or API references.
+- Binary signatures indicate possible embedded cryptographic components.
+- PCAP observations identify network metadata and client-offered options.
+- Interview records capture human-reported system knowledge.
 
-## 11. Licence
+Findings from different discovery layers may corroborate a cryptographic family without proving that they belong to the same asset.
 
-This software is released under the MIT License. See [LICENSE](https://github.com/rao1966/Cryptoscan/blob/main/LICENSE).
+## 9. Current Prototype Limitations
 
-## 12. Author
+1. The prototype has been evaluated using controlled synthetic test inputs, not production enterprise estates.
+2. Binary signature detection does not establish execution or runtime use.
+3. Network observations do not establish successful negotiation unless the required handshake evidence is available.
+4. Interview-reported information requires independent corroboration.
+5. The risk model is provisional and has not been empirically calibrated.
+6. Discovery coverage, false-positive rates, and false-negative rates have not yet been independently benchmarked.
+7. Legacy platforms, vendor-specific formats, and additional keystore formats require further evaluation.
+8. The current implementation should not be treated as a complete enterprise cryptographic inventory solution.
 
-**Dr. Srinivasa Rao Angajala**  
-Independent Researcher  
-Guntur, Andhra Pradesh, India
+## 10. Research and Development Roadmap
+
+- Expand discovery coverage for legacy enterprise formats.
+- Improve binary evidence with offsets and contextual validation.
+- Extend passive network analysis and handshake classification.
+- Improve cross-layer asset correlation.
+- Evaluate discovery accuracy against independently prepared datasets.
+- Validate and calibrate the risk model.
+- Evaluate migration prioritization for post-quantum cryptography.
+
+## 11. Research Status
+
+CryptoScan is a research prototype demonstrating a source-code-independent, six-layer approach to cryptographic discovery and provisional risk assessment.
+
+Its current evidence consists of controlled synthetic test cases. Further implementation, benchmarking, and independent validation are required before production deployment.
+
+## 12. License
+
+Add a separate LICENSE file before public release. Do not assume a license solely from this README.

@@ -1,0 +1,10 @@
+{
+  "web1": {
+    "lifetime": 3,
+    "exposure": 5
+  },
+  "web2": {
+    "lifetime": 2,
+    "exposure": 2
+  }
+}
