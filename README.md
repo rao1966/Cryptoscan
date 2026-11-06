@@ -72,25 +72,25 @@ Execute the following commands from the project root.
 ### L1 – Certificate and key discovery
 
 ```bash
-python scan_1.py samples -o findings.json
+python src/scan_1.py samples -o findings.json
 ```
 
 ### L2 – Configuration discovery
 
 ```bash
-python scan_2.py configs -o findings_l2.json
+python src/scan_2.py configs -o findings_l2.json
 ```
 
 ### L3 – Job and script discovery
 
 ```bash
-python scan_3.py l3_test -o findings_l3.json
+python src/scan_3.py l3_test -o findings_l3.json
 ```
 
 ### L4 – Binary signature discovery
 
 ```bash
-python scan_4.py l4_test -o findings_l4.json
+python src/scan_4.py l4_test -o findings_l4.json
 ```
 
 Binary signature matches indicate possible cryptographic components, not confirmed runtime use.
@@ -98,13 +98,13 @@ Binary signature matches indicate possible cryptographic components, not confirm
 ### L5 – Passive TLS metadata discovery
 
 ```bash
-python scan_5.py l5_test.pcap -o findings_l5_test.json
+python src/scan_5.py l5_test.pcap -o findings_l5_test.json
 ```
 
 Optional system mapping:
 
 ```bash
-python scan_5.py --help
+python src/scan_5.py --help
 ```
 
 The scanner analyzes supplied packet captures offline. Client-offered cipher suites must not be interpreted as negotiated algorithms.
@@ -112,7 +112,7 @@ The scanner analyzes supplied packet captures offline. Client-offered cipher sui
 ### L6 – Human knowledge ingestion
 
 ```bash
-python scan_6.py l6_test.csv -o findings_l6_test.json --context-out context_l6_test.json
+python src/scan_6.py l6_test.csv -o findings_l6_test.json --context-out context_l6_test.json
 ```
 
 L6 findings represent human-reported information and require corroboration where possible.
