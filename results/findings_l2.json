@@ -1,1 +1,52 @@
-
+{
+  "scanner": "CryptoScan L2",
+  "evidence_layer": "L2",
+  "scan_date": "2026-11-06T18:09:22.749355+00:00",
+  "scanned_folder": "D:\\Cryptoscan-main\\Cryptoscan-main\\samples",
+  "files_examined": 1,
+  "total_findings": 3,
+  "findings": [
+    {
+      "type": "configuration-finding",
+      "location": "samples\\nginx_test.conf",
+      "line": 3,
+      "directive": "ssl_protocols",
+      "matched_value": "TLSv1",
+      "issue": "Deprecated TLS/SSL protocol",
+      "severity": "HIGH",
+      "quantum_vulnerable": false,
+      "evidence": "ssl_protocols TLSv1 TLSv1.2;",
+      "evidence_layer": "L2"
+    },
+    {
+      "type": "configuration-finding",
+      "location": "samples\\nginx_test.conf",
+      "line": 4,
+      "directive": "ssl_ciphers",
+      "matched_value": "RC4",
+      "issue": "Weak or deprecated cryptographic algorithm",
+      "severity": "HIGH",
+      "quantum_vulnerable": false,
+      "evidence": "ssl_ciphers AES256-SHA:RC4-SHA;",
+      "evidence_layer": "L2"
+    },
+    {
+      "type": "configuration-finding",
+      "location": "samples\\nginx_test.conf",
+      "line": 5,
+      "directive": "ssl_ecdh_curve",
+      "matched_value": "prime256v1",
+      "issue": "Elliptic-curve cryptographic mechanism",
+      "severity": "QUANTUM",
+      "quantum_vulnerable": true,
+      "evidence": "ssl_ecdh_curve prime256v1;",
+      "evidence_layer": "L2"
+    }
+  ],
+  "limitations": [
+    "Pattern-based prototype; findings require manual validation.",
+    "A quantum flag is not evidence of an actual quantum attack.",
+    "Configuration context and effective runtime settings are not verified.",
+    "No official CycloneDX CBOM compliance is claimed."
+  ]
+}

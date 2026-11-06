@@ -1,0 +1,48 @@
+{
+  "findings": [
+    {
+      "type": "certificate",
+      "location": "samples\\test_certificate.pem",
+      "subject": "CN=Scanner Test",
+      "algorithm": "RSA",
+      "key_size": 2048,
+      "signature_algorithm": "sha256WithRSAEncryption",
+      "not_valid_after": "2026-12-02T07:47:50+00:00",
+      "expired": false,
+      "quantum_vulnerable": true,
+      "note": "",
+      "evidence_layer": "L1"
+    }
+  ],
+  "cbom_like": {
+    "bomFormat": "CryptoScan-Prototype",
+    "components": [
+      {
+        "type": "cryptographic-asset",
+        "bom-ref": "asset-0",
+        "name": "RSA-2048",
+        "evidence": {
+          "occurrences": [
+            {
+              "location": "samples\\test_certificate.pem"
+            }
+          ]
+        },
+        "properties": [
+          {
+            "name": "asset-kind",
+            "value": "certificate"
+          },
+          {
+            "name": "quantum-vulnerable",
+            "value": "True"
+          },
+          {
+            "name": "evidence-layer",
+            "value": "L1"
+          }
+        ]
+      }
+    ]
+  }
+}
