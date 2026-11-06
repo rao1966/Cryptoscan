@@ -36,7 +36,6 @@ python -m pip install -r requirements.txt
 ```
 
 ## 4. Project Structure
-...
 CryptoScan/
 │
 ├── src/
@@ -65,7 +64,7 @@ CryptoScan/
 ├── l5_test.pcap
 ├── l6_test.csv
 └── context_l6_test.json
-... 
+
 ## 5. Running the Six Scanners
 
 Execute the following commands from the project root.
