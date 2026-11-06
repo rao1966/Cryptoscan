@@ -204,10 +204,7 @@ Its current evidence consists of controlled synthetic test cases. Further implem
 
 ## 12. Related Research
 
-CryptoScan is associated with the research preprint:
-"CryptoScan: A Source-Code-Independent Framework for Legacy Cryptographic Discovery."
-The companion research manuscript will separately examine evidence provenance,
-cross-layer reconciliation, and uncertainty-aware risk assessment.
+CryptoScan is associated with the research preprint CryptoScan: A Source-Code-Independent Framework for Legacy Cryptographic Discovery. A separate companion research manuscript examines evidence provenance, cross-layer reconciliation, and uncertainty-aware risk assessment. The two manuscripts address complementary aspects of the CryptoScan research project.
 
 ## 13. License
 
