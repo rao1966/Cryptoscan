@@ -37,33 +37,34 @@ python -m pip install -r requirements.txt
 
 ## 4. Project Structure
 
-```text
 CryptoScan/
-├── scan_1.py
-├── scan_2.py
-├── scan_3.py
-├── scan_4.py
-├── scan_5.py
-├── scan_6.py
+│
+├── src/
+│   ├── requirements.txt
+│   ├── scan_1.py
+│   ├── scan_2.py
+│   ├── scan_3.py
+│   ├── scan_4.py
+│   ├── scan_5.py
+│   └── scan_6.py
+│
+├── samples/
+├── results/
+│
 ├── reconcile_v2.py
 ├── requirements.txt
 ├── README.md
-├── samples/
-├── configs/
-├── l3_test/
-├── l4_test/
+├── LICENSE
+├── .gitignore
+│
+├── test_certificate.pem
+├── nginx_test.conf
+├── test_crypto.cbl
+├── test_crypto.jcl
+├── test_crypto.sh
 ├── l5_test.pcap
 ├── l6_test.csv
-├── findings.json
-├── findings_l2.json
-├── findings_l3.json
-├── findings_l4.json
-├── findings_l5_test.json
-├── findings_l6_test.json
-├── context_l6_test.json
-├── inventory_evidence_audit.json
-└── report_evidence_audit.md
-```
+└── context_l6_test.json
 
 ## 5. Running the Six Scanners
 
