@@ -206,7 +206,26 @@ Its current evidence consists of controlled synthetic test cases. Further implem
 
 CryptoScan is associated with the research preprint CryptoScan: A Source-Code-Independent Framework for Legacy Cryptographic Discovery. A separate companion research manuscript examines evidence provenance, cross-layer reconciliation, and uncertainty-aware risk assessment. The two manuscripts address complementary aspects of the CryptoScan research project.
 
-## 13. License
+## 13. Project Report
+
+### Companion Research Publication
+
+**Title:** From Detection to Defensible Inventory: Evidence Provenance, Cross-Layer Reconciliation and Uncertainty-Aware Risk Assessment for Legacy Cryptographic Discovery
+**Author:** Dr. Srinivasa Rao Angajala
+**Year:** 2026
+**Publication type:** Zenodo Preprint
+**DOI:** https://doi.org/10.5281/zenodo.24127139
+
+**Associated software:** CryptoScan v1.1.0 – Complete Six-Layer Research Prototype
+**GitHub repository:** https://github.com/rao1966/Cryptoscan
+**Release tag:** v1.1.0
+**Release commit:** d24ec63
+
+**Relationship to the main framework:** This companion paper develops the methodological aspects of evidence provenance, cross-layer reconciliation and uncertainty-aware risk assessment that support defensible cryptographic inventory construction.
+
+**Research distinction:** The main framework paper describes the broader CryptoScan discovery framework; the companion paper focuses on the methodology for interpreting, reconciling and assessing discovery evidence; the software record provides the implementation.
+
+## 14. License
 
 This project is distributed under the MIT License.
 See the [LICENSE](LICENSE) file for details.
